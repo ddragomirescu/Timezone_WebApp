@@ -76,6 +76,11 @@ p {
     margin-top: 0;
 }
 
+.sort-help {
+    margin-top: 8px;
+    font-size: 0.95rem;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -94,6 +99,29 @@ td {
 th {
     background: #e6f6ff;
     color: #102a43;
+}
+
+.sortable-header {
+    cursor: pointer;
+    user-select: none;
+}
+
+.sortable-header:hover,
+.sortable-header:focus {
+    color: #0967d2;
+}
+
+.sortable-header:focus {
+    outline: 2px solid #2680c2;
+    outline-offset: 3px;
+}
+
+[data-sort-indicator] {
+    display: inline-block;
+    min-width: 40px;
+    margin-left: 4px;
+    font-size: 0.8rem;
+    font-weight: normal;
 }
 
 tr:last-child td {

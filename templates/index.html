@@ -31,27 +31,36 @@
 
             <h1>World Timezones</h1>
             <p>Live time in several areas around the world.</p>
+            <p class="sort-help">Sorting Ascending and Descending. Click the headers to sort the table.</p>
 
             <table>
                 <thead>
                     <tr>
-                        <th>Area</th>
-                        <th>Date</th>
-                        <th>Time</th>
+                        <th class="sortable-header" data-sort-field="area" tabindex="0">
+                            Area <span data-sort-indicator="area"></span>
+                        </th>
+                        <th class="sortable-header" data-sort-field="date" tabindex="0">
+                            Date <span data-sort-indicator="date"></span>
+                        </th>
+                        <th class="sortable-header" data-sort-field="time" tabindex="0">
+                            Time <span data-sort-indicator="time"></span>
+                        </th>
                         <th>Day</th>
                         <th>UTC Offset</th>
-                        <th>Timezone</th>
+                        <th class="sortable-header" data-sort-field="timezone" tabindex="0">
+                            Timezone <span data-sort-indicator="timezone"></span>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for item in timezone_times %}
-                    <tr data-timezone="{{ item.timezone_name }}">
-                        <td>{{ item.city }}</td>
+                    <tr data-timezone="{{ item.timezone_name }}" data-original-order="{{ loop.index0 }}">
+                        <td data-field="area">{{ item.city }}</td>
                         <td data-field="date">{{ item.date }}</td>
                         <td class="time" data-field="time">{{ item.time }}</td>
                         <td data-field="day">{{ item.day_of_week }}</td>
                         <td data-field="offset">{{ item.utc_offset }}</td>
-                        <td>{{ item.timezone_name }}</td>
+                        <td data-field="timezone">{{ item.timezone_name }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
