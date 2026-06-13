@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>World Timezones</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    </head>
+    <body>
+        <main>
+            <section class="hero-clock" data-clock-timezone="Europe/Bucharest">
+                <label class="timezone-picker">
+                    <span>Display timezone</span>
+                    <select data-timezone-picker>
+                        {% for item in timezone_times %}
+                        <option
+                            value="{{ item.timezone_name }}"
+                            data-city="{{ item.city }}"
+                            {% if item.timezone_name == "Europe/Bucharest" %}selected{% endif %}
+                        >
+                            {{ item.city }} - {{ item.timezone_name }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </label>
+
+                <p class="clock-label" data-main-label>Bucharest</p>
+                <div class="clock-time" data-main-time>--:--:--</div>
+                <div class="clock-date" data-main-date>Loading time...</div>
+            </section>
+
+            <h1>World Timezones</h1>
+            <p>Live time in several areas around the world.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Area</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Day</th>
+                        <th>UTC Offset</th>
+                        <th>Timezone</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in timezone_times %}
+                    <tr data-timezone="{{ item.timezone_name }}">
+                        <td>{{ item.city }}</td>
+                        <td data-field="date">{{ item.date }}</td>
+                        <td class="time" data-field="time">{{ item.time }}</td>
+                        <td data-field="day">{{ item.day_of_week }}</td>
+                        <td data-field="offset">{{ item.utc_offset }}</td>
+                        <td>{{ item.timezone_name }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </main>
+        <script src="{{ url_for('static', filename='clock.js') }}"></script>
+    </body>
+</html>
