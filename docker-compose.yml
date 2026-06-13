@@ -1,0 +1,7 @@
+services:
+  world-timezones-flask:
+    build: .
+    image: world-timezones-flask
+    container_name: world-timezones-flask
+    ports:
+      - "5001:5001"
